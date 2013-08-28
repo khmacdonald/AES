@@ -1,5 +1,11 @@
 #include "gf_8bit.h"
 
+/*
+ * If g^i=b, where a is the multiplicative generator of the 
+ * non-zero elements of GF(256), then RijndaelByValue[b] = i.
+ * The element 0 does is not part of the cyclic group of 
+ * non-zero elements and is by convention assigned a power of 0.
+ */
 uint8_t RijndaelByValue[256] = 
 {
 	0x00, 0x00, 0x19, 0x01, 0x32, 0x02, 0x1a, 0xc6, 
@@ -36,7 +42,10 @@ uint8_t RijndaelByValue[256] =
 	0x0d, 0x63, 0x8c, 0x80, 0xc0, 0xf7, 0x70, 0x07
 };
 
-
+/*
+ * if g^i=b, where a is the multiplicative generator of the 
+ * non-zero elements of GF(256), then RijndaelByPower[i] = b.
+ */
 uint8_t RijndaelByPower[256] = 
 {
 	0x01, 0x03, 0x05, 0x0f, 0x11, 0x33, 0x55, 0xff, 
