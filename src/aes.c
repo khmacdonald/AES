@@ -46,7 +46,10 @@ static void  KeyExpansion( uchar *key, uchar *w, int Nk )
     /* Expand the rest of the key */
     for ( i=Nk; i<Nb*(Nr+1); ++i )
     {
-        tmp[0] = w[4*i-4];  tmp[1] = w[4*i-3];  tmp[2] = w[4*i-2];  tmp[3] = w[4*i-1]; 
+        tmp[0] = w[4*i-4];  
+	tmp[1] = w[4*i-3];  
+	tmp[2] = w[4*i-2];  
+	tmp[3] = w[4*i-1]; 
         if ( 0==(i%Nk) )
             SubRotRcon(tmp,i/Nk);
         else if ( (Nk>6) && (4==(i%Nk)) )
