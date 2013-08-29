@@ -1,33 +1,12 @@
-PROJ   = AesMain
-PREREQ = aes
+CC=gcc
+CFLAGS=
+LFLAGS=
 
-CFLAGS =
-LFLAGS =
+AesMain: aes.o
+	$(CC) -o AesMain AesMain.c aes.o -I includes
 
-ARG    =
+aes.o:
+	$(CC) -c aes.c -I includes
 
-CODE   = ../
-PUBINC = -I $(CODE)includes 
-INC    = -I includes
-SRC    = src/
-BIN    = bin/
-
-CC     = gcc
-
-$(PROJ): $(PREREQ).o
-	mkdir -p $(BIN)
-	$(CC) -o $(PROJ) $(SRC)$(PROJ).c $(BIN)$(PREREQ).o  $(INC) $(PUBINC)
-	mv $(PROJ) $(BIN)$(PROJ)
-
-$(PREREQ).o:
-	mkdir -p $(BIN)
-	$(CC) -c $(SRC)$(PREREQ).c  $(INC) $(PUBINC)
-	mv $(PREREQ).o $(BIN)$(PREREQ)
-
-clean: 
-	rm *.o includes/*~ src/*~ o
-	rm -rf $(BIN)
-
-run:
-	$(BIN)/$(PROJ) $(ARG)
-
+clean:
+	rm AesMain aes.o

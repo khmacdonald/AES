@@ -1,5 +1,8 @@
 AES
 ===
+
+The BinaryGalois directory contains old code.  It is a quick
+implmentation that I am using to implement better code.
 BinaryGalois/includes/gf_8bit.h
     Defines the polynomial for the Rijndael GF(256)
 
