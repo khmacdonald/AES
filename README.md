@@ -1,6 +1,15 @@
 AES
 ===
 
+includes/rijndael.h
+    Defines the Rijndael algorithm.
+
+rijndael.c
+    Implements the Rijgndael algorithm.
+
+AesMain.c
+    Tests the Rijndael algorithm on known test vetors.
+
 The BinaryGalois directory contains old code.  It is a quick
 implmentation that I am using to implement better code.
 BinaryGalois/includes/gf_8bit.h
@@ -22,3 +31,5 @@ BinaryGalois/src/Rijndael.c
 
 BinaryGalois/src/gfMain.c
     Provides a main function to run the test function.
+
+
