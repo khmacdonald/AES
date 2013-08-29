@@ -83,10 +83,10 @@ static void initial_expansion( uchar *key, uchar *w, int Nk )
     int i;
     for ( i=0; i<Nk; ++i )
     {
-        w[4*i+0] = key[4*i+0]
-        w[4*i+1] = key[4*i+1]
-        w[4*i+2] = key[4*i+2]
-        w[4*i+3] = key[4*i+3]
+        w[4*i+0] = key[4*i+0];
+        w[4*i+1] = key[4*i+1];
+        w[4*i+2] = key[4*i+2];
+        w[4*i+3] = key[4*i+3];
     }
     return;
 }
