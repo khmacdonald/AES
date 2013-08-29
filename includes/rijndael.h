@@ -1,29 +1,39 @@
 #ifndef AES_H
 #define AES_H
 
+#define STLEN   16
 #define MAXKEY  32
 #define MAXRND  14
 #define MXEKEY  MAXKEY*MAXRND
 
+#define SUCCESS 0
+#define FAILURE 1
+#define NOMEM   2
+#define INVARG  3
+
 typedef unsigned char uchar;
 typedef unsigned int  uint;
 
-struct _state
-{
-    unsigned char s[16]; /**< A block of Rijndael is 128 bits long */
-};
+/**
+ * This encrypts the 128 bit vector in and puts the encrypted 128 bit vector
+ * in out.  This function is safe to have in and out be the array.  
+ *
+ * out - The encrypted vector.  It is assumed to be 16 bytes long.
+ * in  - The vector to be encrypted.  It is assumed to be 16 bytes long.
+ * key - The encryption key to be used.
+ * keylen - The length of the key.  It can only be 16, 24, or 32.
+ */
+int rijndael_encrypt( uchar * out, uchar * in, uchar * key, int keylen );
 
-struct _cipherkey
-{
-    int length;        /**< Key length (16, 24, or 32) */
-    uchar ck[MAXKEY];  /**< Cipher Key */
-    uchar eck[MXEKEY]; /**< Expanded Cipher Key */
-    int Nb;            /**< The number of columns in the state (always 4) */
-    int Nk;            /**< Number of 32 bit words in the cipher key (4, 6, or 8) */
-    int Nr;            /**< The number of rounds (10, 12, or 14 */
-};
-
-typedef struct _state aes_state;
-typedef struct _cipherkey aes_cipherkey;
+/**
+ * This decrypts the 128 bit vector in and puts the encrypted 128 bit vector
+ * in out.  This function is safe to have in and out be the array.  
+ *
+ * out - The decrypted vector.  It is assumed to be 16 bytes long.
+ * in  - The vector to be decrypted.  It is assumed to be 16 bytes long.
+ * key - The encryption key to be used.
+ * keylen - The length of the key.  It can only be 16, 24, or 32.
+ */
+int rijndael_decrypt( uchar * out, uchar * in, uchar * key, int keylen );
 
 #endif
