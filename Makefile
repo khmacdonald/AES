@@ -1,14 +1,10 @@
-CC=gcc
-CFLAGS=
-LFLAGS=
+CC = gcc
 
-
-
-AesMain: aes.o
+AesMain:rijndael.o
 	$(CC) -o AesMain AesMain.c rijndael.o -I includes
 
-rijndeal.o:
+rijndael.o:
 	$(CC) -c rijndael.c -I includes
 
 clean:
-	rm AesMain aes.o
+	rm *.o AesMain
