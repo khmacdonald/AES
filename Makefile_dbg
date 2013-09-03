@@ -1,4 +1,6 @@
 CC = gcc
+FLAGS = -g
+
 
 AesMain:rijndael.o rijndael_field.o
 	$(CC) -o AesMain AesMain.c rijndael.o rijndael_field.o -I includes
