@@ -112,7 +112,8 @@ uint8_t Rijndael_Sub( uint8_t a, uint8_t b )
 /* Multiplies two elements in the Rijndael field */
 uint8_t Rijndael_Mul( uint8_t a, uint8_t b )
 {
-    uint8_t power = (RijndaelByValue[a] + RijndaelByValue[b]) & 0xff;
+    /* TODO:This may be % instead of & */
+    uint8_t power = (RijndaelByValue[a] + RijndaelByValue[b]) & 0xff; 
 
     /* 
      * ab = c, where a=g^i and b=g^j, then c=g^(i+j) 

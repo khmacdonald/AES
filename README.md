@@ -4,11 +4,17 @@ AES
 includes/rijndael.h
     Defines the Rijndael algorithm.
 
+includes/rijndeal_field.h
+    Defines the field arithmetic for the GF(256) Rijndael uses.
+
 rijndael.c
     Implements the Rijgndael algorithm.
 
 AesMain.c
     Tests the Rijndael algorithm on known test vetors.
+
+rijndael.c
+    Implements the field arithmetic.
 
 
 -------------------------------------------------------------------

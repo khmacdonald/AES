@@ -5,6 +5,11 @@
 #define MAXKEY  32
 #define MAXRND  14
 #define MXEKEY  MAXKEY*MAXRND
+#define NUM_COL 4
+
+#define KEY_128  16
+#define KEY_192  24
+#define KEY_256  32
 
 #define SUCCESS 0
 #define FAILURE 1

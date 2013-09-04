@@ -7,15 +7,20 @@
 #include <rijndael_field.h>
 
 /* Generates random byte array that is n long */
-uint32_t random_bytes(uint8_t * byte_arr, uint32_t n, uint32_t seed )
+uint32_t random_bytes(uint8_t * byte_arr, uint32_t m, uint32_t seed )
 {
     uint32_t rndnum, k=0;
+    int32_t n = (int32_t) m;
     void * dest = (void*) byte_arr;
     const void * src = &rndnum;
 
+    if (n<0)
+        return -1;
+
     srand(seed);
-    while ( n ) 
+    while ( n>0 ) 
     {
+        printf("n = %d\n",n);
         rndnum = (uint32_t) rand();
         if ( n > 4 )
             memcpy(dest,src,4);  
