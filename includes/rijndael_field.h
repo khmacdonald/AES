@@ -23,4 +23,7 @@ uint8_t Rijndael_Sub( uint8_t a, uint8_t b );
 uint8_t Rijndael_Mul( uint8_t a, uint8_t b );
 uint8_t Rijndael_Div( uint8_t a, uint8_t b );
 
+/* For testing only */
+uint8_t Long_Mul2( uint8_t a, uint8_t b );
+
 #endif

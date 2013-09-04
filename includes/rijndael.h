@@ -1,6 +1,8 @@
 #ifndef AES_H
 #define AES_H
 
+#include <stdint.h>
+
 #define STLEN   16
 #define MAXKEY  32
 #define MAXRND  14
@@ -16,9 +18,6 @@
 #define NOMEM   2
 #define INVARG  3
 
-typedef unsigned char uchar;
-typedef unsigned int  uint;
-
 /**
  * This encrypts the 128 bit vector in and puts the encrypted 128 bit vector
  * in out.  This function is safe to have in and out be the array.  
@@ -28,7 +27,7 @@ typedef unsigned int  uint;
  * key - The encryption key to be used.
  * keylen - The length of the key.  It can only be 16, 24, or 32.
  */
-int rijndael_encrypt( uchar * out, uchar * in, uchar * key, int keylen );
+int32_t rijndael_encrypt( uint8_t * out, uint8_t * in, uint8_t * key, int32_t keylen );
 
 /**
  * This decrypts the 128 bit vector in and puts the encrypted 128 bit vector
@@ -39,6 +38,6 @@ int rijndael_encrypt( uchar * out, uchar * in, uchar * key, int keylen );
  * key - The encryption key to be used.
  * keylen - The length of the key.  It can only be 16, 24, or 32.
  */
-int rijndael_decrypt( uchar * out, uchar * in, uchar * key, int keylen );
+int32_t rijndael_decrypt( uint8_t * out, uint8_t * in, uint8_t * key, int32_t keylen );
 
 #endif

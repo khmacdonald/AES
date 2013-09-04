@@ -113,7 +113,7 @@ uint8_t Rijndael_Sub( uint8_t a, uint8_t b )
 uint8_t Rijndael_Mul( uint8_t a, uint8_t b )
 {
     /* TODO:This may be % instead of & */
-    uint8_t power = (RijndaelByValue[a] + RijndaelByValue[b]) & 0xff; 
+    uint8_t power = (RijndaelByValue[a] + RijndaelByValue[b]) % 0xff; 
 
     /* 
      * ab = c, where a=g^i and b=g^j, then c=g^(i+j) 
@@ -131,3 +131,67 @@ uint8_t Rijndael_Div( uint8_t a, uint8_t b )
     /* a/b = ab^(-1) */
     return Rijndael_Mul(a,Rijndael_Inv(b));
 }
+
+/* For testing only */
+uint8_t Long_Mul2( uint8_t a, uint8_t b )
+{
+    int8_t rem[8]={0};
+    int32_t k;
+    uint32_t aa,bb,cc;
+    uint8_t c;
+
+    rem[0] = RIJNDAEL;
+    for (k=1; k<8; ++k)
+    {
+        rem[k] = (rem[k-1]<<1);
+        if (rem[k-1]&0x80)
+            rem[k] ^= RIJNDAEL;            
+    }
+
+    aa = (uint32_t)a;
+    bb = (uint32_t)b;
+    cc=0;
+    for (k=0; k<8; ++k)
+    {
+        if (aa&1)
+            cc= (cc^bb);
+        aa = (aa>>1);
+        bb = (bb<<1);
+    }
+
+    c = (uint8_t) (cc&0xff);
+    cc = (cc>>8);
+    for (k=0; k<8; ++k)
+    {
+        if(cc&1)
+            c ^= rem[k];
+        cc = (cc>>1);
+    }
+    return c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

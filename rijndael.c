@@ -50,7 +50,7 @@ uint8_t inv_s_box[256] =
  * key - The encryption key to be used.
  * keylen - The length of the key.  It can only be 16, 24, or 32.
  */
-int rijndael_encrypt( uchar * out, uchar * in, uchar * key, int keylen )
+int32_t rijndael_encrypt( uint8_t * out, uint8_t * in, uint8_t * key, int32_t keylen )
 {
     return SUCCESS;
 }
@@ -64,7 +64,7 @@ int rijndael_encrypt( uchar * out, uchar * in, uchar * key, int keylen )
  * key - The encryption key to be used.
  * keylen - The length of the key.  It can only be 16, 24, or 32.
  */
-int rijndael_decrypt( uchar * out, uchar * in, uchar * key, int keylen )
+int32_t rijndael_decrypt( uint8_t * out, uint8_t * in, uint8_t * key, int32_t keylen )
 {
     return SUCCESS;
 }
