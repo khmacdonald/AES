@@ -3,7 +3,7 @@
 
 #include "rijndael.h"
 
-#define STLEN   16
+#define STATELEN   16
 #define MAXKEY  32
 #define MAXRND  14
 #define MXEKEY  MAXKEY*MAXRND
