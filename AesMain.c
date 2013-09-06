@@ -121,8 +121,49 @@ void TestField( void )
     printf("Number of test errors: %d\n",errors);
 }
 
+void WritePowers_2( void )
+{
+    uint8_t el=1,g=2;
+    int32_t k;
+
+    for (k=0; k<256; ++k)
+    {
+        printf("%02x, ",el);
+        if ( 0==((k+1)%8) )
+            printf("\n");
+        el = Rijndael_Mul(el,g);
+        if (1==el)
+            break;
+    }
+}
+
 int main ( int argc, char ** argv )
 {
     //TestField();
+    WritePowers_2();
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

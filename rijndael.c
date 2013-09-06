@@ -182,7 +182,7 @@ void KeyExpansion( uint8_t * key, uint32_t * w)
         {
             temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk]; /* TODO: Define Rcon */
         }
-        else if ( (6<Nk) && (4==(i%Nk))
+        else if ( (6<Nk) && (4==(i%Nk)) )
         {
             temp = SubWord(temp);
         }
