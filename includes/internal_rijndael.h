@@ -16,7 +16,7 @@ void AddRoundKey( void );
 void MixColumns( void );
 
 /* Permutes a four byte word */
-void RotWord( void );
+uint32_t RotWord( uint32_t w);
 
 /* Transforms the cipher by cyclically permuting rows */
 void ShiftRows( void );
@@ -25,7 +25,7 @@ void ShiftRows( void );
 void SubBytes( void );
 
 /* Performs a four byte s-box operation */
-void SubWord( void );
+uint32_t SubWord( uint32_t w );
 
 /* The inverse of MixColumns */
 void InvMixColumns( void );
@@ -35,5 +35,8 @@ void InvShiftRows( void );
 
 /* The inverse of SubBytes*/
 void InvSubBytes( void );
+
+/* Expands the key for all encryption rounds */
+void KeyExpansion( uint8_t * key, uint32_t * w);
 
 #endif

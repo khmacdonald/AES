@@ -1,4 +1,5 @@
 #include "rijndael.h"
+#include "internal_rijndael.h"
 #include <string.h>
 
 uint8_t s_box[256] = 
@@ -41,6 +42,9 @@ uint8_t inv_s_box[256] =
    0x17, 0x2B, 0x04, 0x7E, 0xBA, 0x77, 0xD6, 0x26, 0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D
 };
 
+static int32_t Nb, Nk, Nr;
+static uint32_t Rcon[1024];
+
 /**
  * This encrypts the 128 bit vector in and puts the encrypted 128 bit vector
  * in out.  This function is safe to have in and out be the array.  
@@ -68,3 +72,153 @@ int32_t rijndael_decrypt( uint8_t * out, uint8_t * in, uint8_t * key, int32_t ke
 {
     return SUCCESS;
 }
+
+/* ------------------------------------------------------------------------------------- */
+/*                                   INTERNAL FUNCTIONS                                  */
+/* ------------------------------------------------------------------------------------- */
+
+
+/* Adds the round key to state */
+void AddRoundKey( void )
+{
+    return;
+}
+
+/* Transforms the cipher by mixing the columns */
+void MixColumns( void )
+{
+    return;
+}
+
+/* Permutes a four byte word */
+uint32_t RotWord( uint32_t w)
+{
+    uint32_t r, tmp;
+
+    tmp = w & (0xff<<24);
+    r = (w>>8) & 0xffffff;
+    r ^= tmp;
+    return r;
+}
+
+/* Transforms the cipher by cyclically permuting rows */
+void ShiftRows( void )
+{
+    return;
+}
+
+/* Performs byte s-box operation */
+void SubBytes( void )
+{
+    return;
+}
+
+/* Performs a four byte s-box operation */
+uint32_t SubWord( uint32_t w )
+{
+    uint32_t r;
+    uint8_t * arr;
+    uint32_t tmp;
+    int32_t shift, k;
+
+    r=0;
+    arr = (uint8_t*) &w;
+    for ( k=0; k<4; ++k )
+    {
+        shift = 8*k;
+        tmp = (uint32_t) s_box[arr[k]];
+        r^= (tmp<<shift);
+    }
+
+    return r;
+}
+
+/* The inverse of MixColumns */
+void InvMixColumns( void )
+{
+    return;
+}
+
+/* The inverse of ShiftRows */
+void InvShiftRows( void )
+{
+    return;
+}
+
+/* The inverse of SubBytes*/
+void InvSubBytes( void )
+{
+    return;
+}
+
+uint32_t create_word( uint8_t * key )
+{
+    uint32_t word = 0, tmp;
+    int32_t k, shift;
+
+    for (k=0; k<4; ++k)
+    {
+        shift = k*8;
+        tmp = ((uint32_t) key[k]) & 0xff;
+        word ^= (tmp<<shift);
+    }
+}
+
+/* Expands the key for all encryption rounds */
+void KeyExpansion( uint8_t * key, uint32_t * w)
+{
+    uint32_t temp;
+    int32_t i;
+
+    for (i=0; i<Nk; ++i)
+    {
+        w[i] = create_word(&(key[i*4]));
+    }
+
+    for (i=Nk; i<Nb*(Nr+1); i++ )
+    {
+        temp=w[i-1];
+        if (0==(i%Nk))
+        {
+            temp = SubWord(RotWord(temp)) ^ Rcon[i/Nk]; /* TODO: Define Rcon */
+        }
+        else if ( (6<Nk) && (4==(i%Nk))
+        {
+            temp = SubWord(temp);
+        }
+        w[i] = w[i-Nk]^temp;
+    }
+
+    return;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
