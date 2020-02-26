@@ -6,6 +6,8 @@
 #include <rijndael.h>
 #include <rijndael_field.h>
 
+/* Test commit and push */
+
 /* Generates random byte array that is n long */
 uint32_t random_bytes(uint8_t * byte_arr, uint32_t m, uint32_t seed )
 {
